@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SearchTxtField extends StatelessWidget {
-  const SearchTxtField({super.key, required this.controller});
+class SrchTxtField extends StatelessWidget {
+  const SrchTxtField({super.key, required this.controller});
   final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class SearchTxtField extends StatelessWidget {
               ),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'Search Patient',
+                hintText: 'Search Session',
                 hintStyle: TextStyle(
                   color: Color.fromARGB(255, 178, 173, 173),
                   fontSize: 15,

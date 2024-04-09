@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hackathon/custom_text_widget/custom_text.dart';
 import 'package:hackathon/screens/home_page/home_page.dart';
 
-class backBtn extends StatelessWidget {
-  const backBtn({
+class backButn extends StatelessWidget {
+  const backButn({
     super.key,
   });
 

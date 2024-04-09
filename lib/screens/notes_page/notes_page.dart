@@ -1,59 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon/custom_text_widget/custom_text.dart';
 import 'package:hackathon/nav_bar_widgets/event_nav.dart';
 import 'package:hackathon/nav_bar_widgets/home_nav.dart';
 import 'package:hackathon/nav_bar_widgets/profile_nav.dart';
-import 'package:hackathon/screens/home_page/home_page_widgets/search_txt_field.dart';
-import 'package:hackathon/screens/home_page/home_page_widgets/floating_act_btn.dart';
-import 'package:hackathon/screens/home_page/home_page_widgets/user_greeting_cont.dart';
+import 'package:hackathon/screens/homepage_session/homepage_session_widgets/example_event_cont.dart';
+import 'package:hackathon/screens/homepage_session/homepage_session_widgets/fltng_act_btn.dart';
+import 'package:hackathon/screens/notes_page/notes_page_widgets/event_cont.dart';
+import 'package:hackathon/screens/notes_page/notes_page_widgets/tgl_btn.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({super.key});
+class NotesPage extends StatefulWidget {
+  NotesPage({super.key});
   @override
-  _HomeState createState() => _HomeState();
+  _NotesPageState createState() => _NotesPageState();
 }
 
-class _HomeState extends State<HomePage> {
+class _NotesPageState extends State<NotesPage> {
   int _currentIndex = 0;
-  final TextEditingController cntr = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFFECF0F3),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(25, 35, 25, 25),
+        padding: EdgeInsets.all(25),
         child: Column(
           children: [
-            userGreetingCont(
-              screenWidth: screenWidth,
-              username: 'User',
-            ),
+            exampleEvent(),
             SizedBox(
-              height: 30,
+              height: 20,
             ),
-            SearchTxtField(controller: cntr),
+            toggleBtn2(),
             SizedBox(
-              height: 160,
+              height: 35,
             ),
-            //ADD conditional statement. If there are no existing data in the database display 'NO PATIENT YET" else Display all patients.
-            customText(
-                text: 'No Patient',
-                color: Color.fromARGB(255, 192, 184, 184),
-                size: 45,
-                weight: FontWeight.bold),
-            customText(
-                text: 'Yet',
-                color: Color.fromARGB(255, 192, 184, 184),
-                size: 45,
-                weight: FontWeight.bold),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Events(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Events(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Events(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Events(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Events(),
+                    SizedBox(
+                      height: 15,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: floatingActBtn(),
+      floatingActionButton: button(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         backgroundColor: Colors.white,

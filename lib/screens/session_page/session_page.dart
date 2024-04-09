@@ -3,17 +3,18 @@ import 'package:hackathon/custom_text_widget/custom_text.dart';
 import 'package:hackathon/nav_bar_widgets/event_nav.dart';
 import 'package:hackathon/nav_bar_widgets/home_nav.dart';
 import 'package:hackathon/nav_bar_widgets/profile_nav.dart';
-import 'package:hackathon/screens/home_page/home_page_widgets/search_txt_field.dart';
-import 'package:hackathon/screens/home_page/home_page_widgets/floating_act_btn.dart';
-import 'package:hackathon/screens/home_page/home_page_widgets/user_greeting_cont.dart';
+import 'package:hackathon/screens/session_page/session_page_widgets/back_button.dart';
+import 'package:hackathon/screens/session_page/session_page_widgets/flt_act_btn.dart';
+import 'package:hackathon/screens/session_page/session_page_widgets/srch_txt_fld.dart';
+import 'package:hackathon/screens/session_page/session_page_widgets/user_grt_cont.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({super.key});
+class SessionPage extends StatefulWidget {
+  SessionPage({super.key});
   @override
-  _HomeState createState() => _HomeState();
+  _SessionState createState() => _SessionState();
 }
 
-class _HomeState extends State<HomePage> {
+class _SessionState extends State<SessionPage> {
   int _currentIndex = 0;
   final TextEditingController cntr = TextEditingController();
   @override
@@ -25,35 +26,43 @@ class _HomeState extends State<HomePage> {
       body: Padding(
         padding: EdgeInsets.fromLTRB(25, 35, 25, 25),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            userGreetingCont(
+            backButn(),
+            SizedBox(
+              height: 25,
+            ),
+            userGrtCont(
               screenWidth: screenWidth,
-              username: 'User',
             ),
             SizedBox(
               height: 30,
             ),
-            SearchTxtField(controller: cntr),
+            SrchTxtField(controller: cntr),
             SizedBox(
               height: 160,
             ),
             //ADD conditional statement. If there are no existing data in the database display 'NO PATIENT YET" else Display all patients.
-            customText(
-                text: 'No Patient',
-                color: Color.fromARGB(255, 192, 184, 184),
-                size: 45,
-                weight: FontWeight.bold),
-            customText(
-                text: 'Yet',
-                color: Color.fromARGB(255, 192, 184, 184),
-                size: 45,
-                weight: FontWeight.bold),
+            Center(
+              child: customText(
+                  text: 'No Session',
+                  color: Color.fromARGB(255, 192, 184, 184),
+                  size: 45,
+                  weight: FontWeight.bold),
+            ),
+            Center(
+              child: customText(
+                  text: 'Yet',
+                  color: Color.fromARGB(255, 192, 184, 184),
+                  size: 45,
+                  weight: FontWeight.bold),
+            ),
           ],
         ),
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: floatingActBtn(),
+      floatingActionButton: fltActBtn(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         backgroundColor: Colors.white,

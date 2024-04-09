@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon/screens/session_page/session_page.dart';
+import 'package:hackathon/screens/homepage_session/home_page_session.dart';
+// import 'package:hackathon/screens/start_event_page/start_event_page.dart';
 
-class floatingActBtn extends StatelessWidget {
-  const floatingActBtn({super.key});
+class fltActBtn extends StatelessWidget {
+  const fltActBtn({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class floatingActBtn extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (contex) => SessionPage(),
+                  builder: (contex) => HomePageSession(),
                 ),
               );
             },
