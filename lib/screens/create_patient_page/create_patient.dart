@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon/custom_text_widget/custom_text.dart';
+import 'package:hackathon/screens/create_patient_page/create_patient_widgets/age_cont.dart';
+import 'package:hackathon/screens/create_patient_page/create_patient_widgets/back_btn.dart';
+import 'package:hackathon/screens/create_patient_page/create_patient_widgets/email_cont.dart';
+import 'package:hackathon/screens/create_patient_page/create_patient_widgets/first_name_cont.dart';
+import 'package:hackathon/screens/create_patient_page/create_patient_widgets/last_name_cont.dart';
+import 'package:hackathon/screens/create_patient_page/create_patient_widgets/mobile_cont.dart';
+import 'package:hackathon/screens/create_patient_page/create_patient_widgets/submit_btn.dart';
+import 'package:hackathon/screens/home_page/home_page.dart';
 
-class patientForm extends StatelessWidget {
+class patientForm extends StatefulWidget {
   const patientForm({super.key});
+  @override
+  State<patientForm> createState() => _patientFormState();
+}
 
+class _patientFormState extends State<patientForm> {
+  String groupValue = 'Male';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,57 +24,78 @@ class patientForm extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.fromLTRB(25, 35, 25, 25),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            back(),
+            SizedBox(
+              height: 180,
+            ),
+            fname_cont(),
+            SizedBox(
+              height: 10,
+            ),
+            lname_cont(),
+            SizedBox(
+              height: 10,
+            ),
+            mobile_cont(),
+            SizedBox(
+              height: 10,
+            ),
+            email_cont(),
+            SizedBox(
+              height: 10,
+            ),
+            age_cont(),
+            SizedBox(
+              height: 15,
+            ),
             Center(
               child: Container(
-                padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                width: 230,
-                height: 45,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15)),
+                height: 50,
+                width: 210,
                 child: Row(
                   children: [
-                    Icon(Icons.smartphone),
+                    Radio(
+                      value: 'Male',
+                      groupValue: groupValue,
+                      onChanged: (value) {
+                        setState(() {
+                          groupValue = value!;
+                        });
+                      },
+                    ),
+                    customText(
+                        text: 'Male',
+                        color: Colors.black,
+                        size: 16,
+                        weight: FontWeight.w400),
                     SizedBox(
-                      width: 10,
+                      width: 15,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          // color: Colors.green,
-                          borderRadius: BorderRadius.circular(10)),
-                      padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
-                      width: 180,
-                      height: 45,
-                      child: TextField(
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                        ),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Mobile Number',
-                          hintStyle: TextStyle(
-                            color: const Color.fromARGB(255, 59, 59, 59),
-                            fontSize: 15,
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color(0xFF9EB3C2)), // Underline color
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Colors
-                                    .white), // Underline color when focused
-                          ),
-                        ),
-                      ),
+                    Radio(
+                      value: 'Female',
+                      groupValue: groupValue,
+                      onChanged: (value) {
+                        setState(() {
+                          groupValue = value!;
+                        });
+                      },
                     ),
+                    customText(
+                        text: 'Female',
+                        color: Colors.black,
+                        size: 16,
+                        weight: FontWeight.w400),
                   ],
                 ),
               ),
-            )
+            ),
+            SizedBox(
+              height: 120,
+            ),
+            submitButton(),
           ],
         ),
       ),
