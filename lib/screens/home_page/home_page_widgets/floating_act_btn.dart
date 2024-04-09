@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/screens/create_patient_page/create_patient.dart';
 import 'package:hackathon/screens/session_page/session_page.dart';
 
 class floatingActBtn extends StatelessWidget {
@@ -17,7 +18,7 @@ class floatingActBtn extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (contex) => SessionPage(),
+                  builder: (contex) => patientForm(),
                 ),
               );
             },
