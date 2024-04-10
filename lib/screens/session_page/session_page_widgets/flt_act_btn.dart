@@ -10,8 +10,8 @@ class fltActBtn extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
-          top: 745,
-          right: 170,
+          top: 714,
+          right: 16,
           child: FloatingActionButton(
             shape: CircleBorder(),
             onPressed: () {

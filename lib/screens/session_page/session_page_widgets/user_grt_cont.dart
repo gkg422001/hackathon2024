@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hackathon/custom_text_widget/custom_text.dart';
 
 class userGrtCont extends StatelessWidget {
-  const userGrtCont({super.key, required this.screenWidth});
+  const userGrtCont({super.key, required this.screenWidth, required this.name});
   final double screenWidth;
-
+  final String name;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,7 +18,7 @@ class userGrtCont extends StatelessWidget {
       child: Row(
         children: [
           customText(
-            text: 'Patient A',
+            text: '${name}',
             size: 20,
             color: Colors.white,
             weight: FontWeight.w400,

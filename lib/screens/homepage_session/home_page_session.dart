@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon/nav_bar_widgets/query_nav.dart';
-import 'package:hackathon/nav_bar_widgets/home_nav.dart';
-import 'package:hackathon/nav_bar_widgets/profile_nav.dart';
+// import 'package:hackathon/nav_bar_widgets/home_nav.dart';
+// import 'package:hackathon/nav_bar_widgets/profile_nav.dart';
 import 'package:hackathon/screens/home_page/home_page.dart';
 import 'package:hackathon/screens/homepage_session/homepage_session_widgets/example_event_cont.dart';
 import 'package:hackathon/screens/homepage_session/homepage_session_widgets/fltng_act_btn.dart';

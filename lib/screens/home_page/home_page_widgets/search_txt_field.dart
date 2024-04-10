@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SearchTxtField extends StatelessWidget {
-  const SearchTxtField({super.key, required this.controller});
-  final TextEditingController controller;
+  const SearchTxtField({super.key, required this.runFilter});
+  // final TextEditingController controller;
+  final Function(String) runFilter;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +24,7 @@ class SearchTxtField extends StatelessWidget {
             width: 270,
             height: 45,
             child: TextField(
-              controller: controller,
+              onChanged: (value) => runFilter(value),
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,

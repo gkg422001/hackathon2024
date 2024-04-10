@@ -11,7 +11,8 @@ import 'package:hackathon/screens/session_page/session_page_widgets/srch_txt_fld
 import 'package:hackathon/screens/session_page/session_page_widgets/user_grt_cont.dart';
 
 class SessionPage extends StatefulWidget {
-  SessionPage({super.key});
+  SessionPage({super.key, required this.name});
+  final String name;
   @override
   _SessionState createState() => _SessionState();
 }
@@ -38,13 +39,14 @@ class _SessionState extends State<SessionPage> {
             ),
             userGrtCont(
               screenWidth: screenWidth,
+              name: widget.name,
             ),
             SizedBox(
               height: 30,
             ),
             SrchTxtField(controller: cntr),
             SizedBox(
-              height: 160,
+              height: 10,
             ),
             //ADD conditional statement. If there are no existing data in the database display 'NO PATIENT YET" else Display all patients.
             Center(

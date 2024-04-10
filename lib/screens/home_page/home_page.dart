@@ -4,10 +4,13 @@ import 'package:hackathon/models.dart';
 import 'package:hackathon/nav_bar_widgets/query_nav.dart';
 import 'package:hackathon/nav_bar_widgets/home_nav.dart';
 import 'package:hackathon/nav_bar_widgets/profile_nav.dart';
+import 'package:hackathon/screens/home_page/home_page_widgets/list_view_patients.dart';
+import 'package:hackathon/screens/home_page/home_page_widgets/no_patients_UI.dart';
 import 'package:hackathon/screens/home_page/home_page_widgets/search_txt_field.dart';
 import 'package:hackathon/screens/home_page/home_page_widgets/floating_act_btn.dart';
 import 'package:hackathon/screens/home_page/home_page_widgets/user_greeting_cont.dart';
 import 'package:hackathon/screens/query_page/query_page.dart';
+import 'package:hackathon/screens/session_page/session_page.dart';
 import 'package:hackathon/services.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +23,7 @@ class HomePage extends StatefulWidget {
 
 class _HomeState extends State<HomePage> {
   int _currentIndex = 0;
-  final TextEditingController cntr = TextEditingController();
+  // final TextEditingController cntr = TextEditingController();
   List<Patient> _foundPatients = [];
   @override
   void initState() {
@@ -31,15 +34,48 @@ class _HomeState extends State<HomePage> {
 
   Future<void> _fetchPatients() async {
     try {
-      List<Patient> friends = await ApiService().fetchData();
+      List<Patient> patients = await ApiService().fetchData();
       setState(() {
-        _foundPatients = friends;
+        _foundPatients = patients;
       });
     } catch (e) {
       print("Failed");
-      // Handle any errors
       print(e);
     }
+  }
+
+  Future<List<Patient>> _reset() async {
+    try {
+      List<Patient> patients = await ApiService().fetchData();
+      setState(() {
+        _foundPatients = patients;
+      });
+      return patients;
+    } catch (e) {
+      print("Failed");
+      print(e);
+      throw Exception('Failed to fetch patients');
+    }
+  }
+
+  void _runFilter(String enteredKeyword) {
+    // new function
+    List<Patient> results = [];
+    if (enteredKeyword.isEmpty) {
+      results = _foundPatients;
+    } else {
+      // Only filter if there are characters to search
+      results = _foundPatients
+          .where((patient) =>
+              patient.FirstName.toLowerCase()
+                  .contains(enteredKeyword.toLowerCase()) ||
+              patient.LastName.toLowerCase()
+                  .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      _foundPatients = results;
+    });
   }
 
   @override
@@ -59,48 +95,11 @@ class _HomeState extends State<HomePage> {
             SizedBox(
               height: 30,
             ),
-            SearchTxtField(controller: cntr),
+            SearchTxtField(runFilter: _runFilter),
             SizedBox(
-              height: 160,
+              height: 10,
             ),
-            _foundPatients.isEmpty
-                ? Column(
-                    children: [
-                      customText(
-                        text: 'No Patient',
-                        color: Color.fromARGB(255, 192, 184, 184),
-                        size: 45,
-                        weight: FontWeight.bold,
-                      ),
-                      customText(
-                        text: 'Yet',
-                        color: Color.fromARGB(255, 192, 184, 184),
-                        size: 45,
-                        weight: FontWeight.bold,
-                      ),
-                    ],
-                  )
-                : Container(
-                    width: 200,
-                    height: 350,
-                    child: ListView.builder(
-                      itemCount: _foundPatients.length,
-                      itemBuilder: (context, index) {
-                        Patient patient = _foundPatients[index];
-                        return Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 177, 176, 176)),
-                          child: customText(
-                              text: patient.FirstName,
-                              color: Colors.black,
-                              size: 15,
-                              weight: FontWeight.w400),
-                        );
-                      },
-                    ),
-                  ),
+            list_view_patients(foundPatients: _foundPatients),
           ],
         ),
       ),
