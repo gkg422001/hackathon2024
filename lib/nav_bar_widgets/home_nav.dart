@@ -12,7 +12,10 @@ class home_nav extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(
+              builder: (context) => HomePage(
+                    index: 0,
+                  )),
         );
       },
       child: Container(

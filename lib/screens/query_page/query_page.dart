@@ -1,60 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/custom_text_widget/custom_text.dart';
 import 'package:hackathon/nav_bar_widgets/query_nav.dart';
 import 'package:hackathon/nav_bar_widgets/home_nav.dart';
-import 'package:hackathon/nav_bar_widgets/profile_nav.dart';
 import 'package:hackathon/screens/home_page/home_page.dart';
-import 'package:hackathon/screens/homepage_session/homepage_session_widgets/example_event_cont.dart';
-import 'package:hackathon/screens/homepage_session/homepage_session_widgets/fltng_act_btn.dart';
-import 'package:hackathon/screens/homepage_session/homepage_session_widgets/info_txt_fld.dart';
-import 'package:hackathon/screens/homepage_session/homepage_session_widgets/toggle_btn.dart';
-import 'package:hackathon/screens/homepage_session/homepage_session_widgets/upload_btns.dart';
-import 'package:hackathon/screens/query_page/query_page.dart';
+import 'package:hackathon/screens/query_page/query_page_widgets/query_txt_field.dart';
+import 'package:hackathon/screens/query_page/query_page_widgets/smart_txt.dart';
 
-class HomePageSession extends StatefulWidget {
-  HomePageSession({super.key});
+class QueryPage extends StatefulWidget {
+  QueryPage({super.key, required this.index});
+  final int index;
   @override
-  _HomeWithEventState createState() => _HomeWithEventState();
+  _QueryState createState() => _QueryState();
 }
 
-class _HomeWithEventState extends State<HomePageSession> {
+class _QueryState extends State<QueryPage> {
   int _currentIndex = 0;
+  final TextEditingController cntr = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.index;
+  }
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFFECF0F3),
       body: Padding(
-        padding: EdgeInsets.all(25),
+        padding: EdgeInsets.fromLTRB(25, 35, 25, 25),
         child: Column(
           children: [
-            exampleEvent(),
+            smart_query_txt(),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
-            toggleBtn(),
+            Container(
+              height: 600,
+              width: 400,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(15)),
+            ),
             SizedBox(
-              height: 35,
+              height: 15,
             ),
-            infoTxtField(),
-            SizedBox(
-              height: 35,
+            queryTxtField(
+              controller: cntr,
             ),
-            UploadButtons(),
           ],
         ),
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: button(
-        index: _currentIndex,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         backgroundColor: Colors.white,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.black,
-        showSelectedLabels: true, // Only show label for the selected item
+        showSelectedLabels: true,
         showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(
@@ -80,10 +82,6 @@ class _HomeWithEventState extends State<HomePageSession> {
             ),
             label: 'Clock',
           ),
-          // BottomNavigationBarItem(
-          //   icon: profile_nav(),
-          //   label: 'Profile',
-          // ),
         ],
         onTap: (index) {
           setState(() {

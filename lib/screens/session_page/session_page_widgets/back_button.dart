@@ -3,10 +3,8 @@ import 'package:hackathon/custom_text_widget/custom_text.dart';
 import 'package:hackathon/screens/home_page/home_page.dart';
 
 class backButn extends StatelessWidget {
-  const backButn({
-    super.key,
-  });
-
+  const backButn({super.key, required this.index});
+  final int index;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -14,7 +12,9 @@ class backButn extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (contex) => HomePage(),
+            builder: (contex) => HomePage(
+              index: index,
+            ),
           ),
         );
       },

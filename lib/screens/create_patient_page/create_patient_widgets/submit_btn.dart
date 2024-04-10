@@ -3,10 +3,8 @@ import 'package:hackathon/custom_text_widget/custom_text.dart';
 import 'package:hackathon/screens/home_page/home_page.dart';
 
 class submitButton extends StatelessWidget {
-  const submitButton({
-    super.key,
-  });
-
+  const submitButton({super.key, required this.index});
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -15,7 +13,9 @@ class submitButton extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(),
+              builder: (context) => HomePage(
+                index: index,
+              ),
             ),
           );
         },

@@ -10,16 +10,25 @@ import 'package:hackathon/screens/create_patient_page/create_patient_widgets/sub
 import 'package:hackathon/screens/home_page/home_page.dart';
 
 class patientForm extends StatefulWidget {
-  const patientForm({super.key});
+  const patientForm({super.key, required this.index});
+  final int index;
   @override
   State<patientForm> createState() => _patientFormState();
 }
 
 class _patientFormState extends State<patientForm> {
   String groupValue = 'Male';
+  int _currentIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.index;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       // backgroundColor: Colors.deepPurple,
       body: Padding(
         padding: EdgeInsets.fromLTRB(25, 35, 25, 25),
@@ -27,7 +36,9 @@ class _patientFormState extends State<patientForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            back(),
+            back(
+              index: _currentIndex,
+            ),
             SizedBox(
               height: 180,
             ),
@@ -95,7 +106,9 @@ class _patientFormState extends State<patientForm> {
             SizedBox(
               height: 120,
             ),
-            submitButton(),
+            submitButton(
+              index: _currentIndex,
+            ),
           ],
         ),
       ),

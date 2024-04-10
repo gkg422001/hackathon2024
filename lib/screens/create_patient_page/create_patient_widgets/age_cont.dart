@@ -11,7 +11,7 @@ class age_cont extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
         width: 270,
-        height: 45,
+        height: 55,
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(15)),
         child: Row(
@@ -22,8 +22,7 @@ class age_cont extends StatelessWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                  // color: Colors.green,
-                  borderRadius: BorderRadius.circular(10)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
               padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
               width: 200,
               height: 45,

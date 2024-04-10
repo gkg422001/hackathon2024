@@ -3,7 +3,8 @@ import 'package:hackathon/custom_text_widget/custom_text.dart';
 import 'package:hackathon/screens/home_page/home_page.dart';
 
 class button extends StatelessWidget {
-  const button({super.key});
+  const button({super.key, required this.index});
+  final int index;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -95,7 +96,9 @@ class button extends StatelessWidget {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      HomePage(),
+                                                      HomePage(
+                                                    index: index,
+                                                  ),
                                                 ),
                                               );
                                             },
